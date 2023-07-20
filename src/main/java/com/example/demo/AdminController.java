@@ -4,7 +4,6 @@ import com.example.dto.requestDto.StudentRequestDto;
 import com.example.dto.responseDto.StudentResponseDto;
 import com.example.service.PaymentService;
 import com.example.service.StudentService;
-import com.example.user.PaymentScheme;
 import com.example.user.Student;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,8 +30,10 @@ public class AdminController {
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
+
     // return list of students
     @GetMapping("/students")
+    @PreAuthorize("hasRole('MANAGER')")  // method level overrides class level
     public List<Student> findAll(){
         return studentService.getAllStudents();
     }
@@ -43,11 +44,13 @@ public class AdminController {
         studentService.deleteById(id);
     }
 
+
+    // TODO: 20-Jul-23
     // update student
-    @PutMapping("/students")
-    public Student updateStudent(@RequestBody StudentRequestDto studentRequestDto){
-        Student updatedStudent = studentService.addStudent(studentRequestDto);
-        return updatedStudent;
+    @PutMapping("/students/{id}")
+   public ResponseEntity<StudentResponseDto> updateStudent(@PathVariable int id, @RequestBody final StudentRequestDto studentRequestDto){
+        StudentResponseDto studentResponseDto = studentService.updateStudent(id, studentRequestDto);
+        return new ResponseEntity<>(studentResponseDto, HttpStatus.OK);
     }
 
 }

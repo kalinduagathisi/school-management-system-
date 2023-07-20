@@ -3,18 +3,15 @@ package com.example.demo;
 import com.example.dto.requestDto.PaymentSchemeRequestDto;
 import com.example.service.PaymentService;
 import com.example.user.PaymentScheme;
-
 import io.swagger.v3.oas.annotations.tags.Tag;
-
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// both the manager and admin has authority here
+// both manager and the admin have authority here
 
 @RestController
 @RequestMapping("/api/v1/management")
@@ -49,13 +46,6 @@ public class ManagementController {
             throw new RuntimeException("Scheme id not found - "+ paymentId);
         }
         return paymentScheme;
-    }
-
-
-    // delete scheme
-    @DeleteMapping("/payments/{paymentId}")
-    public void deletePaymentScheme(@PathVariable int paymentId){
-        paymentService.deleteById(paymentId);
     }
 
 }

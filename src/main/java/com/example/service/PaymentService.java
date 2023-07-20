@@ -15,5 +15,4 @@ public interface PaymentService {
 
     PaymentScheme save(PaymentSchemeRequestDto PaymentSchemeRequestDto);
 
-    void deleteById(int id);
 }

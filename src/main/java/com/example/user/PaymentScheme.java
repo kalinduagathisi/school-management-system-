@@ -31,8 +31,8 @@ public class PaymentScheme {
 
     private double amount;
 
-    @OneToMany(mappedBy = "paymentScheme", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-    private List<Student> students;
+//    @OneToMany(mappedBy = "paymentScheme", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+//    private List<Student> students;
 
 }
 

@@ -4,7 +4,6 @@ package com.example.service;
 import com.example.dto.requestDto.StudentRequestDto;
 import com.example.dto.responseDto.StudentResponseDto;
 import com.example.user.Student;
-import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,5 +18,7 @@ public interface StudentService {
     Student getStudentById(int id);
 
     void deleteById(int id);
+
+    StudentResponseDto updateStudent(int studentId, StudentRequestDto studentRequestDto);
 
 }

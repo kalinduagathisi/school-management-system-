@@ -51,18 +51,37 @@ public class StudentServiceImplementation implements StudentService {
         student.setEmail(studentRequestDto.getEmail());
         student.setDateOfBirth(studentRequestDto.getDateOfBirth());
 
-        if (studentRequestDto.getSchemeId()==null){
-            return studentRepository.save(student);
-        }
         PaymentScheme paymentScheme = paymentService.findById(studentRequestDto.getSchemeId());
         student.setPaymentScheme(paymentScheme);
-        return studentRepository.save(student);
 
+        if (studentRequestDto.getSchemeId()==null){
+//            return studentRepository.save(student);
+            throw new IllegalArgumentException("Payment scheme couldn't be null.");
+        }
+        else {
+            return studentRepository.save(student);
+        }
     }
 
     @Override
     @Transactional
     public void deleteById(int id) {
         studentRepository.deleteById(id);
+    }
+
+    @Transactional
+    @Override
+    public StudentResponseDto updateStudent(int studentId, StudentRequestDto studentRequestDto) {
+        Student studentToBeUpdated = getStudentById(studentId);
+
+        studentToBeUpdated.setFirstName(studentRequestDto.getFirstName());
+        studentToBeUpdated.setLastName(studentRequestDto.getLastName());
+        studentToBeUpdated.setEmail(studentRequestDto.getEmail());
+        studentToBeUpdated.setDateOfBirth(studentRequestDto.getDateOfBirth());
+
+        PaymentScheme paymentScheme = paymentService.findById(studentRequestDto.getSchemeId());
+        studentToBeUpdated.setPaymentScheme(paymentScheme);
+
+        return Mapper.studentToStudentResponseDto(studentToBeUpdated);
     }
 }
