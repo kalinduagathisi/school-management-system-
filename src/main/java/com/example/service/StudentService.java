@@ -1,16 +1,23 @@
 package com.example.service;
 
 
+import com.example.dto.requestDto.StudentRequestDto;
+import com.example.dto.responseDto.StudentResponseDto;
 import com.example.user.Student;
+import io.swagger.v3.oas.annotations.servers.Server;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface StudentService {
-    List<Student> findAll();
 
-    Student findById(int id);
+    Student addStudent(StudentRequestDto studentRequestDto);
 
-    Student save(Student student);
+    List<Student> getAllStudents();
+
+    Student getStudentById(int id);
 
     void deleteById(int id);
+
 }

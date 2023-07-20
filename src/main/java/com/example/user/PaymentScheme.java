@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -29,7 +31,8 @@ public class PaymentScheme {
 
     private double amount;
 
-    @OneToOne(mappedBy = "paymentScheme", cascade = CascadeType.ALL)
-    private Student student;
+    @OneToMany(mappedBy = "paymentScheme", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<Student> students;
+
 }
 

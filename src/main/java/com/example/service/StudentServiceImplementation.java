@@ -1,5 +1,9 @@
 package com.example.service;
 
+import com.example.dto.Mapper;
+import com.example.dto.requestDto.StudentRequestDto;
+import com.example.dto.responseDto.StudentResponseDto;
+import com.example.user.PaymentScheme;
 import com.example.user.Student;
 import com.example.user.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,37 +11,55 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
 public class StudentServiceImplementation implements StudentService {
 
-    private StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
+    private final PaymentService paymentService;
 
     @Autowired
-    public StudentServiceImplementation(StudentRepository studentRepository){
+    public StudentServiceImplementation(StudentRepository studentRepository, PaymentService paymentService){
         this.studentRepository = studentRepository;
+        this.paymentService = paymentService;
     }
+
+
     @Override
-    public List<Student> findAll() {
+    public List<Student> getAllStudents() {
         return studentRepository.findAll();
     }
 
     @Override
-    public Student findById(int id) {
+    public Student getStudentById(int id) {
         Optional<Student> result = studentRepository.findById(id);
-        Student employee=null;
+        Student student=null;
         if (result.isPresent()){
-            employee=result.get();
+            student=result.get();
         }
-        return employee;
+        return student;
     }
 
-    @Override
     @Transactional
-    public Student save(Student student) {
+    @Override
+    public Student addStudent(StudentRequestDto studentRequestDto) {
+        Student student = new Student();
+        student.setFirstName(studentRequestDto.getFirstName());
+        student.setLastName(studentRequestDto.getLastName());
+        student.setEmail(studentRequestDto.getEmail());
+        student.setDateOfBirth(studentRequestDto.getDateOfBirth());
+
+        if (studentRequestDto.getSchemeId()==null){
+            return studentRepository.save(student);
+        }
+        PaymentScheme paymentScheme = paymentService.findById(studentRequestDto.getSchemeId());
+        student.setPaymentScheme(paymentScheme);
         return studentRepository.save(student);
+
     }
+
 
     @Override
     @Transactional

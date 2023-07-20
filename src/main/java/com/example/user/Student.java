@@ -1,10 +1,8 @@
 package com.example.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -26,10 +24,10 @@ public class Student {
     private String email;
     private LocalDate dateOfBirth;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ManyToOne (cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "scheme_id")
     private PaymentScheme paymentScheme;
-
 
 }
 
