@@ -37,9 +37,17 @@ public class AdminController {
         return studentService.getAllStudents();
     }
 
+    // delete student
     @DeleteMapping("/students/{id}")
     public void deleteStudentById(@PathVariable int id){
         studentService.deleteById(id);
+    }
+
+    // update student
+    @PutMapping("/students")
+    public Student updateStudent(@RequestBody StudentRequestDto studentRequestDto){
+        Student updatedStudent = studentService.addStudent(studentRequestDto);
+        return updatedStudent;
     }
 
 }
