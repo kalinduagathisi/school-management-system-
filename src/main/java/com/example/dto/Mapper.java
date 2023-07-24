@@ -1,7 +1,9 @@
 package com.example.dto;
 
+import com.example.dto.responseDto.PaymentPlanResponseDto;
 import com.example.dto.responseDto.PaymentSchemeResponseDto;
 import com.example.dto.responseDto.StudentResponseDto;
+import com.example.user.PaymentPlan;
 import com.example.user.PaymentScheme;
 import com.example.user.Student;
 
@@ -38,9 +40,7 @@ public class Mapper {
         paymentSchemeResponseDto.setSchemeId(paymentScheme.getSchemeId());
         paymentSchemeResponseDto.setSchemeName(paymentScheme.getSchemeName());
         paymentSchemeResponseDto.setSchemeType(paymentScheme.getSchemeType());
-        paymentSchemeResponseDto.setFeeType(paymentScheme.getFeeType());
-        paymentSchemeResponseDto.setAmount(paymentScheme.getAmount());
-
+        paymentSchemeResponseDto.setPaymentPlan(paymentScheme.getPaymentPlan());
         return paymentSchemeResponseDto;
     }
 
@@ -51,5 +51,12 @@ public class Mapper {
             paymentSchemeResponseDtos.add(paymentSchemeToPaymentSchemeDto(paymentScheme));
         }
         return paymentSchemeResponseDtos;
+    }
+
+    public static PaymentPlanResponseDto paymentPlanToPaymentPlanResponseDto(PaymentPlan paymentPlan){
+        PaymentPlanResponseDto paymentPlanResponseDto = new PaymentPlanResponseDto();
+        paymentPlanResponseDto.setPaymentPlanId(paymentPlan.getPaymentPlanId());
+        paymentPlanResponseDto.setAmount(paymentPlan.getAmount());
+        return paymentPlanResponseDto;
     }
 }

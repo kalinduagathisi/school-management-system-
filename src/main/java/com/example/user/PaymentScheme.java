@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 @Builder
@@ -27,9 +28,9 @@ public class PaymentScheme {
 
     private String schemeType;
 
-    private String feeType;
-
-    private double amount;
+    @JoinColumn(name = "payment_plan_id")
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH})
+    private PaymentPlan paymentPlan;
 
 //    @OneToMany(mappedBy = "paymentScheme", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 //    private List<Student> students;

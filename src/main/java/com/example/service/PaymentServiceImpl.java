@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.dto.requestDto.PaymentSchemeRequestDto;
 import com.example.payment.PaymentRepository;
+import com.example.user.PaymentPlan;
 import com.example.user.PaymentScheme;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,8 +33,8 @@ public class PaymentServiceImpl implements PaymentService{
         PaymentScheme paymentScheme = new PaymentScheme();
         paymentScheme.setSchemeName(paymentSchemeRequestDto.getSchemeName());
         paymentScheme.setSchemeType(paymentSchemeRequestDto.getSchemeType());
-        paymentScheme.setFeeType(paymentSchemeRequestDto.getFeeType());
-        paymentScheme.setAmount(paymentSchemeRequestDto.getAmount());
+        paymentScheme.setPaymentPlan(paymentSchemeRequestDto.getPaymentPlan());
+
         return paymentRepository.save(paymentScheme);
     }
 }
