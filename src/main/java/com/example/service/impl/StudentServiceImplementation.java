@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -84,5 +85,14 @@ public class StudentServiceImplementation implements StudentService {
         studentEntityToBeUpdated.setPaymentSchemeEntity(paymentSchemeEntity);
 
         return Mapper.studentToStudentResponseDto(studentEntityToBeUpdated);
+    }
+
+    public List<StudentResponseDto> getStudentsByBirthMonthAndYear(int birthMonth, int birthYear) {
+//        return studentRepository.findByBirthMonthAndYear(birthMonth, birthYear);
+        return Mapper.studentsToStudentsResponseDto(studentRepository.findByBirthMonthAndYear(birthMonth, birthYear));
+    }
+
+    public List<StudentEntity> getStudentsByBirthdateRange(Date startDate, Date endDate) {
+        return studentRepository.findByBirthdateBetween(startDate, endDate);
     }
 }

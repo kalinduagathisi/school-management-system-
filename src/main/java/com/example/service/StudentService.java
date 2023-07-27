@@ -6,6 +6,7 @@ import com.example.dto.responseDto.StudentResponseDto;
 import com.example.entity.StudentEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,5 +21,9 @@ public interface StudentService {
     void deleteById(int id);
 
     StudentResponseDto updateStudent(int studentId, StudentRequestDto studentRequestDto);
+
+    List<StudentResponseDto> getStudentsByBirthMonthAndYear(int birthMonth, int birthYear);
+
+    public List<StudentEntity> getStudentsByBirthdateRange(Date startDate, Date endDate);
 
 }

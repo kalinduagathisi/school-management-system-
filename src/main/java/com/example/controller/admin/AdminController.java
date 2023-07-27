@@ -6,11 +6,13 @@ import com.example.entity.StudentEntity;
 import com.example.service.PaymentService;
 import com.example.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -33,10 +35,29 @@ public class AdminController {
 
     // return list of students
     @GetMapping("/students")
-    @PreAuthorize("hasRole('MANAGER')")  // method level overrides class level
+    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")  // method level overrides class level
     public List<StudentEntity> findAll(){
         return studentService.getAllStudents();
     }
+
+
+    // filter students based on birthMonth and birthYear
+    @GetMapping("/students/filter")
+    public List<StudentResponseDto> getStudentsByBirthMonthAndYear(
+            @RequestParam int birthMonth,
+            @RequestParam int birthYear
+    ) {
+        return studentService.getStudentsByBirthMonthAndYear(birthMonth, birthYear);
+    }
+
+    @GetMapping("/students/filter/range")
+    public List<StudentEntity> getStudentsByBirthdateRange(
+            @RequestParam Date startDate,
+            @RequestParam Date endDate
+    ) {
+        return studentService.getStudentsByBirthdateRange(startDate, endDate);
+    }
+
 
     // delete student
     @DeleteMapping("/students/{id}")
