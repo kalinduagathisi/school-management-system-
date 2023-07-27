@@ -1,6 +1,6 @@
 package com.example.dto.responseDto;
 
-import com.example.user.PaymentScheme;
+import com.example.entity.PaymentSchemeEntity;
 
 import lombok.Data;
 
@@ -14,5 +14,5 @@ public class StudentResponseDto {
     private String lastName;
     private String email;
     private LocalDate dateOfBirth;
-    private PaymentScheme paymentScheme;
+    private PaymentSchemeEntity paymentSchemeEntity;
 }

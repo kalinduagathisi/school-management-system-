@@ -1,6 +1,6 @@
-package com.example.config;
+package com.example.config.security;
 
-import com.example.token.TokenRepository;
+import com.example.repository.TokenRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,8 +1,8 @@
-package com.example.demo;
+package com.example.controller.management;
 
 import com.example.dto.requestDto.PaymentSchemeRequestDto;
+import com.example.entity.PaymentSchemeEntity;
 import com.example.service.PaymentService;
-import com.example.user.PaymentScheme;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,28 +24,28 @@ public class ManagementController {
 
     // add new payment scheme
     @PostMapping("/payments")
-    public ResponseEntity<PaymentScheme> createPaymentScheme(@RequestBody final PaymentSchemeRequestDto paymentSchemeRequestDto){
-        PaymentScheme paymentScheme = paymentService.save(paymentSchemeRequestDto);
-        return new ResponseEntity<>(paymentScheme, HttpStatus.OK);
+    public ResponseEntity<PaymentSchemeEntity> createPaymentScheme(@RequestBody final PaymentSchemeRequestDto paymentSchemeRequestDto){
+        PaymentSchemeEntity paymentSchemeEntity = paymentService.save(paymentSchemeRequestDto);
+        return new ResponseEntity<>(paymentSchemeEntity, HttpStatus.OK);
     }
 
 
     // return list of payment schemas
     @GetMapping("/payments")
-    public List<PaymentScheme> findAll(){
+    public List<PaymentSchemeEntity> findAll(){
         return paymentService.findAll();
     }
 
 
     // get payment scheme by id
     @GetMapping("/payments/{paymentId}")
-    public PaymentScheme getPaymentScheme(@PathVariable int paymentId){
-        PaymentScheme paymentScheme = paymentService.findById(paymentId);
+    public PaymentSchemeEntity getPaymentScheme(@PathVariable int paymentId){
+        PaymentSchemeEntity paymentSchemeEntity = paymentService.findById(paymentId);
 
-        if (paymentScheme==null){
+        if (paymentSchemeEntity ==null){
             throw new RuntimeException("Scheme id not found - "+ paymentId);
         }
-        return paymentScheme;
+        return paymentSchemeEntity;
     }
 
 }

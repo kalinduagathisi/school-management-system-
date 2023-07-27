@@ -1,13 +1,10 @@
-package com.example.user;
+package com.example.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
-import java.util.Map;
 
 @Data
 @Builder
@@ -16,7 +13,7 @@ import java.util.Map;
 
 @Entity
 @Table(name = "payment_scheme")
-public class PaymentScheme {
+public class PaymentSchemeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,10 +27,10 @@ public class PaymentScheme {
 
     @JoinColumn(name = "payment_plan_id")
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH})
-    private PaymentPlan paymentPlan;
+    private PaymentPlanEntity paymentPlanEntity;
 
-//    @OneToMany(mappedBy = "paymentScheme", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-//    private List<Student> students;
+//    @OneToMany(mappedBy = "paymentSchemeEntity", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+//    private List<StudentEntity> students;
 
 }
 

@@ -1,4 +1,4 @@
-package com.example.user;
+package com.example.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.example.user.Permission.*;
+import static com.example.enums.Permission.*;
 
 @RequiredArgsConstructor
 public enum Role {

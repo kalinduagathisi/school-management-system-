@@ -1,5 +1,6 @@
-package com.example.user;
+package com.example.entity;
 
+import com.example.enums.Role;
 import com.example.token.Token;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,7 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "_user")
-public class User implements UserDetails {
+public class UserEntity implements UserDetails {
 
   @Id
   @GeneratedValue
@@ -31,7 +32,7 @@ public class User implements UserDetails {
   @Enumerated(EnumType.STRING)
   private Role role;
 
-  @OneToMany(mappedBy = "user")
+  @OneToMany(mappedBy = "userEntity")
   private List<Token> tokens;
 
   @Override

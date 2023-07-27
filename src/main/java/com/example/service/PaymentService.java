@@ -1,7 +1,7 @@
 package com.example.service;
 
 import com.example.dto.requestDto.PaymentSchemeRequestDto;
-import com.example.user.PaymentScheme;
+import com.example.entity.PaymentSchemeEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,10 +9,10 @@ import java.util.List;
 @Service
 public interface PaymentService {
 
-    List<PaymentScheme> findAll();
+    List<PaymentSchemeEntity> findAll();
 
-    PaymentScheme findById(int schemeId);
+    PaymentSchemeEntity findById(int schemeId);
 
-    PaymentScheme save(PaymentSchemeRequestDto PaymentSchemeRequestDto);
+    PaymentSchemeEntity save(PaymentSchemeRequestDto PaymentSchemeRequestDto);
 
 }

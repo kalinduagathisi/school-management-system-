@@ -1,10 +1,10 @@
-package com.example.demo;
+package com.example.controller.admin;
 
 import com.example.dto.requestDto.StudentRequestDto;
 import com.example.dto.responseDto.StudentResponseDto;
+import com.example.entity.StudentEntity;
 import com.example.service.PaymentService;
 import com.example.service.StudentService;
-import com.example.user.Student;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,16 +25,16 @@ public class AdminController {
 
     // add new students
     @PostMapping("/students")
-    public ResponseEntity<Student> addStudent(@RequestBody final StudentRequestDto studentRequestDto){
-        Student student = studentService.addStudent(studentRequestDto);
-        return new ResponseEntity<>(student, HttpStatus.OK);
+    public ResponseEntity<StudentEntity> addStudent(@RequestBody final StudentRequestDto studentRequestDto){
+        StudentEntity studentEntity = studentService.addStudent(studentRequestDto);
+        return new ResponseEntity<>(studentEntity, HttpStatus.OK);
     }
 
 
     // return list of students
     @GetMapping("/students")
     @PreAuthorize("hasRole('MANAGER')")  // method level overrides class level
-    public List<Student> findAll(){
+    public List<StudentEntity> findAll(){
         return studentService.getAllStudents();
     }
 

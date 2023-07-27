@@ -1,11 +1,11 @@
 package com.example.auth;
 
-import com.example.config.JwtService;
+import com.example.config.security.JwtService;
+import com.example.entity.UserEntity;
 import com.example.token.Token;
-import com.example.token.TokenRepository;
+import com.example.repository.TokenRepository;
 import com.example.token.TokenType;
-import com.example.user.User;
-import com.example.user.UserRepository;
+import com.example.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,7 +28,7 @@ public class AuthenticationService {
   private final AuthenticationManager authenticationManager;
 
   public AuthenticationResponse register(RegisterRequest request) {
-    var user = User.builder()
+    var user = UserEntity.builder()
         .firstname(request.getFirstname())
         .lastname(request.getLastname())
         .email(request.getEmail())
@@ -64,9 +64,9 @@ public class AuthenticationService {
         .build();
   }
 
-  private void saveUserToken(User user, String jwtToken) {
+  private void saveUserToken(UserEntity userEntity, String jwtToken) {
     var token = Token.builder()
-        .user(user)
+        .userEntity(userEntity)
         .token(jwtToken)
         .tokenType(TokenType.BEARER)
         .expired(false)
@@ -75,8 +75,8 @@ public class AuthenticationService {
     tokenRepository.save(token);
   }
 
-  private void revokeAllUserTokens(User user) {
-    var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId());
+  private void revokeAllUserTokens(UserEntity userEntity) {
+    var validUserTokens = tokenRepository.findAllValidTokenByUser(userEntity.getId());
     if (validUserTokens.isEmpty())
       return;
     validUserTokens.forEach(token -> {

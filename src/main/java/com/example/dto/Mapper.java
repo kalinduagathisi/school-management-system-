@@ -3,60 +3,61 @@ package com.example.dto;
 import com.example.dto.responseDto.PaymentPlanResponseDto;
 import com.example.dto.responseDto.PaymentSchemeResponseDto;
 import com.example.dto.responseDto.StudentResponseDto;
-import com.example.user.PaymentPlan;
-import com.example.user.PaymentScheme;
-import com.example.user.Student;
+import com.example.entity.PaymentPlanEntity;
+import com.example.entity.PaymentSchemeEntity;
+import com.example.entity.StudentEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Mapper {
 
-    // one student
-    public static StudentResponseDto studentToStudentResponseDto(Student student){
+    // one studentEntity
+    public static StudentResponseDto studentToStudentResponseDto(StudentEntity studentEntity){
         StudentResponseDto studentResponseDto = new StudentResponseDto();
-        studentResponseDto.setStudentId(student.getStudentId());
-        studentResponseDto.setFirstName(student.getFirstName());
-        studentResponseDto.setLastName(student.getLastName());
-        studentResponseDto.setEmail(student.getEmail());
-        studentResponseDto.setDateOfBirth(student.getDateOfBirth());
-        studentResponseDto.setPaymentScheme(student.getPaymentScheme());
+        studentResponseDto.setStudentId(studentEntity.getStudentId());
+        studentResponseDto.setFirstName(studentEntity.getFirstName());
+        studentResponseDto.setLastName(studentEntity.getLastName());
+        studentResponseDto.setEmail(studentEntity.getEmail());
+        studentResponseDto.setDateOfBirth(studentEntity.getDateOfBirth());
+        studentResponseDto.setPaymentSchemeEntity(studentEntity.getPaymentSchemeEntity());
 
         return studentResponseDto;
     }
 
-    // list of students
-    public static List<StudentResponseDto> studentsToStudentsResponseDto(List<Student> students){
+    // list of studentEntities
+    public static List<StudentResponseDto> studentsToStudentsResponseDto(List<StudentEntity> studentEntities){
         List<StudentResponseDto> studentResponseDtos = new ArrayList<>();
-        for (Student student: students){
-            studentResponseDtos.add(studentToStudentResponseDto(student));
+        for (StudentEntity studentEntity : studentEntities){
+            studentResponseDtos.add(studentToStudentResponseDto(studentEntity));
         }
         return studentResponseDtos;
     }
 
     // one payment scheme
-    public static PaymentSchemeResponseDto paymentSchemeToPaymentSchemeDto(PaymentScheme paymentScheme){
+    public static PaymentSchemeResponseDto paymentSchemeToPaymentSchemeDto(PaymentSchemeEntity paymentSchemeEntity){
         PaymentSchemeResponseDto paymentSchemeResponseDto = new PaymentSchemeResponseDto();
-        paymentSchemeResponseDto.setSchemeId(paymentScheme.getSchemeId());
-        paymentSchemeResponseDto.setSchemeName(paymentScheme.getSchemeName());
-        paymentSchemeResponseDto.setSchemeType(paymentScheme.getSchemeType());
-        paymentSchemeResponseDto.setPaymentPlan(paymentScheme.getPaymentPlan());
+        paymentSchemeResponseDto.setSchemeId(paymentSchemeEntity.getSchemeId());
+        paymentSchemeResponseDto.setSchemeName(paymentSchemeEntity.getSchemeName());
+        paymentSchemeResponseDto.setSchemeType(paymentSchemeEntity.getSchemeType());
+        paymentSchemeResponseDto.setPaymentPlanEntity(paymentSchemeEntity.getPaymentPlanEntity());
         return paymentSchemeResponseDto;
     }
 
     // many payment schemes
-    public static List<PaymentSchemeResponseDto> paymentSchemesToPaymentSchemeDtos(List<PaymentScheme> paymentSchemes){
+    public static List<PaymentSchemeResponseDto> paymentSchemesToPaymentSchemeDtos(List<PaymentSchemeEntity> paymentSchemeEntities){
         List<PaymentSchemeResponseDto> paymentSchemeResponseDtos = new ArrayList<>();
-        for (PaymentScheme paymentScheme: paymentSchemes){
-            paymentSchemeResponseDtos.add(paymentSchemeToPaymentSchemeDto(paymentScheme));
+        for (PaymentSchemeEntity paymentSchemeEntity : paymentSchemeEntities){
+            paymentSchemeResponseDtos.add(paymentSchemeToPaymentSchemeDto(paymentSchemeEntity));
         }
         return paymentSchemeResponseDtos;
     }
 
-    public static PaymentPlanResponseDto paymentPlanToPaymentPlanResponseDto(PaymentPlan paymentPlan){
+    // payment plan
+    public static PaymentPlanResponseDto paymentPlanToPaymentPlanResponseDto(PaymentPlanEntity paymentPlanEntity){
         PaymentPlanResponseDto paymentPlanResponseDto = new PaymentPlanResponseDto();
-        paymentPlanResponseDto.setPaymentPlanId(paymentPlan.getPaymentPlanId());
-        paymentPlanResponseDto.setAmount(paymentPlan.getAmount());
+        paymentPlanResponseDto.setPaymentPlanId(paymentPlanEntity.getPaymentPlanId());
+        paymentPlanResponseDto.setAmount(paymentPlanEntity.getAmount());
         return paymentPlanResponseDto;
     }
 }

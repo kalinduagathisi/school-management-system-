@@ -1,6 +1,6 @@
 package com.example.auth;
 
-import com.example.user.Role;
+import com.example.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

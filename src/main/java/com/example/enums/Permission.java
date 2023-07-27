@@ -1,4 +1,4 @@
-package com.example.user;
+package com.example.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

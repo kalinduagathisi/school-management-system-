@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example.config.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -13,9 +13,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
-import static com.example.user.Permission.*;
-import static com.example.user.Role.ADMIN;
-import static com.example.user.Role.MANAGER;
+import static com.example.enums.Permission.*;
+import static com.example.enums.Role.ADMIN;
+import static com.example.enums.Role.MANAGER;
 import static org.springframework.http.HttpMethod.*;
 
 @Configuration

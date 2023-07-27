@@ -1,10 +1,7 @@
 package com.example.dto.requestDto;
 
-import com.example.user.PaymentPlan;
+import com.example.entity.PaymentPlanEntity;
 import lombok.Data;
-
-import java.util.List;
-import java.util.Map;
 
 @Data
 public class PaymentSchemeRequestDto {
@@ -13,5 +10,5 @@ public class PaymentSchemeRequestDto {
 
     private String schemeType;
 
-    private PaymentPlan paymentPlan;
+    private PaymentPlanEntity paymentPlanEntity;
 }
