@@ -6,7 +6,6 @@ import com.example.entity.StudentEntity;
 import com.example.service.PaymentService;
 import com.example.service.StudentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,24 +23,21 @@ public class AdminController {
     private final StudentService studentService;
     private final PaymentService paymentService;
 
-
-    // add new students
+    // Add new students
     @PostMapping("/students")
-    public ResponseEntity<StudentEntity> addStudent(@RequestBody final StudentRequestDto studentRequestDto){
+    public ResponseEntity<StudentEntity> addStudent(@RequestBody final StudentRequestDto studentRequestDto) {
         StudentEntity studentEntity = studentService.addStudent(studentRequestDto);
         return new ResponseEntity<>(studentEntity, HttpStatus.OK);
     }
 
-
-    // return list of students
+    // Return a list of all students
     @GetMapping("/students")
-    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")  // method level overrides class level
-    public List<StudentEntity> findAll(){
+    @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")  // Method level overrides class level
+    public List<StudentEntity> findAll() {
         return studentService.getAllStudents();
     }
 
-
-    // filter students based on birthMonth and birthYear
+    // Filter students based on birthMonth and birthYear
     @GetMapping("/students/filter")
     public List<StudentResponseDto> getStudentsByBirthMonthAndYear(
             @RequestParam int birthMonth,
@@ -50,6 +46,7 @@ public class AdminController {
         return studentService.getStudentsByBirthMonthAndYear(birthMonth, birthYear);
     }
 
+    // Filter students based on a date range
     @GetMapping("/students/filter/range")
     public List<StudentEntity> getStudentsByBirthdateRange(
             @RequestParam Date startDate,
@@ -58,20 +55,17 @@ public class AdminController {
         return studentService.getStudentsByBirthdateRange(startDate, endDate);
     }
 
-
-    // delete student
+    // Delete a student by ID
     @DeleteMapping("/students/{id}")
-    public void deleteStudentById(@PathVariable int id){
+    public void deleteStudentById(@PathVariable int id) {
         studentService.deleteById(id);
     }
 
 
-    // TODO: 20-Jul-23
-    // update student
+    // Update student information by ID
     @PutMapping("/students/{id}")
-   public ResponseEntity<StudentResponseDto> updateStudent(@PathVariable int id, @RequestBody final StudentRequestDto studentRequestDto){
+    public ResponseEntity<StudentResponseDto> updateStudent(@PathVariable int id, @RequestBody final StudentRequestDto studentRequestDto) {
         StudentResponseDto studentResponseDto = studentService.updateStudent(id, studentRequestDto);
         return new ResponseEntity<>(studentResponseDto, HttpStatus.OK);
     }
-
 }

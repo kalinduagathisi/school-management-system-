@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -18,19 +21,20 @@ public class PaymentSchemeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "scheme_id")
-    private Integer schemeId; // primary key: scheme
+    private Integer schemeId; // Primary key: scheme
 
     @Column(name = "scheme_name")
     private String schemeName;
 
     private String schemeType;
 
-    @JoinColumn(name = "payment_plan_id")
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH})
-    private PaymentPlanEntity paymentPlanEntity;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "paymentSchemeEntity", orphanRemoval = true)
+    private List<PaymentPlanEntity> paymentPlanEntity = new ArrayList<>(); // Initialize the list
 
-//    @OneToMany(mappedBy = "paymentSchemeEntity", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-//    private List<StudentEntity> students;
+    // Helper method to add PaymentPlanEntity and set the parent PaymentScheme
+    public void addPaymentPlanEntity(PaymentPlanEntity planEntity) {
+        planEntity.setPaymentSchemeEntity(this);
+        this.paymentPlanEntity.add(planEntity);
+    }
 
 }
-

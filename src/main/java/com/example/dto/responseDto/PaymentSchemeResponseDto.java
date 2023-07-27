@@ -3,6 +3,9 @@ package com.example.dto.responseDto;
 import com.example.entity.PaymentPlanEntity;
 import lombok.Data;
 
+import java.util.List;
+import java.util.Map;
+
 @Data
 public class PaymentSchemeResponseDto {
 
@@ -12,5 +15,9 @@ public class PaymentSchemeResponseDto {
 
     private String schemeType;
 
-    private PaymentPlanEntity paymentPlanEntity;
+    List<Map<String, Object>> paymentPlanEntityList;
+
+//    private List<PaymentPlanEntity> paymentPlanEntity;
+
+
 }

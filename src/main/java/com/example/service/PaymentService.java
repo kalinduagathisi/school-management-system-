@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.dto.requestDto.PaymentSchemeRequestDto;
+import com.example.dto.responseDto.PaymentSchemeResponseDto;
 import com.example.entity.PaymentSchemeEntity;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,6 @@ public interface PaymentService {
 
     PaymentSchemeEntity findById(int schemeId);
 
-    PaymentSchemeEntity save(PaymentSchemeRequestDto PaymentSchemeRequestDto);
+    PaymentSchemeResponseDto save(PaymentSchemeRequestDto PaymentSchemeRequestDto);
 
 }

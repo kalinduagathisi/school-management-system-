@@ -1,6 +1,7 @@
 package com.example.controller.management;
 
 import com.example.dto.requestDto.PaymentSchemeRequestDto;
+import com.example.dto.responseDto.PaymentSchemeResponseDto;
 import com.example.entity.PaymentSchemeEntity;
 import com.example.service.PaymentService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,9 +25,9 @@ public class ManagementController {
 
     // add new payment scheme
     @PostMapping("/payments")
-    public ResponseEntity<PaymentSchemeEntity> createPaymentScheme(@RequestBody final PaymentSchemeRequestDto paymentSchemeRequestDto){
-        PaymentSchemeEntity paymentSchemeEntity = paymentService.save(paymentSchemeRequestDto);
-        return new ResponseEntity<>(paymentSchemeEntity, HttpStatus.OK);
+    public ResponseEntity<PaymentSchemeResponseDto> createPaymentScheme(@RequestBody final PaymentSchemeRequestDto paymentSchemeRequestDto){
+        PaymentSchemeResponseDto paymentSchemeResponseDto = paymentService.save(paymentSchemeRequestDto);
+        return new ResponseEntity<>(paymentSchemeResponseDto, HttpStatus.OK);
     }
 
 

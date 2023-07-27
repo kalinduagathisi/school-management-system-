@@ -1,6 +1,7 @@
 package com.example.entity;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,10 +25,9 @@ public class StudentEntity {
     private String email;
     private LocalDate dateOfBirth;
 
-//    @JsonIgnore
+    //    @JsonIgnore
     @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="schemeId")
 //    @JsonIdentityReference(alwaysAsId=true)  // returns only the id of the required entity
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne (cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "scheme_id")
     private PaymentSchemeEntity paymentSchemeEntity;
