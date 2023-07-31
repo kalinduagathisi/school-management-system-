@@ -52,6 +52,7 @@ public class StudentServiceImplementation implements StudentService {
         studentEntity.setLastName(studentRequestDto.getLastName());
         studentEntity.setEmail(studentRequestDto.getEmail());
         studentEntity.setDateOfBirth(studentRequestDto.getDateOfBirth());
+        studentEntity.setStudentStatus(studentRequestDto.getStudentStatus());
 
         PaymentSchemeEntity paymentSchemeEntity = paymentService.findById(studentRequestDto.getSchemeId());
         studentEntity.setPaymentSchemeEntity(paymentSchemeEntity);
@@ -80,6 +81,7 @@ public class StudentServiceImplementation implements StudentService {
         studentEntityToBeUpdated.setLastName(studentRequestDto.getLastName());
         studentEntityToBeUpdated.setEmail(studentRequestDto.getEmail());
         studentEntityToBeUpdated.setDateOfBirth(studentRequestDto.getDateOfBirth());
+        studentEntityToBeUpdated.setStudentStatus(studentRequestDto.getStudentStatus());
 
         PaymentSchemeEntity paymentSchemeEntity = paymentService.findById(studentRequestDto.getSchemeId());
         studentEntityToBeUpdated.setPaymentSchemeEntity(paymentSchemeEntity);

@@ -1,5 +1,6 @@
 package com.example.entity;
 
+import com.example.enums.StudentStatus;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
@@ -24,6 +25,8 @@ public class StudentEntity {
     private String lastName;
     private String email;
     private LocalDate dateOfBirth;
+    @Enumerated(EnumType.STRING)
+    private StudentStatus studentStatus;
 
     //    @JsonIgnore
     @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="schemeId")

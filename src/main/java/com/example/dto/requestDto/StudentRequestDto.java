@@ -1,5 +1,6 @@
 package com.example.dto.requestDto;
 
+import com.example.enums.StudentStatus;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -12,4 +13,5 @@ public class StudentRequestDto {
     private String email;
     private LocalDate dateOfBirth;
     private Integer schemeId;
+    private StudentStatus studentStatus;
 }

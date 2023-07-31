@@ -23,6 +23,7 @@ public class Mapper {
         studentResponseDto.setEmail(studentEntity.getEmail());
         studentResponseDto.setDateOfBirth(studentEntity.getDateOfBirth());
         studentResponseDto.setPaymentSchemeEntity(studentEntity.getPaymentSchemeEntity());
+        studentResponseDto.setStudentStatus(studentEntity.getStudentStatus());
 
         return studentResponseDto;
     }
