@@ -23,7 +23,7 @@ public class PaymentSchemeEntity {
     @Column(name = "scheme_id")
     private Integer schemeId; // Primary key: scheme
 
-    @Column(name = "scheme_name")
+    @Column(name = "scheme_name", unique = true)
     private String schemeName;
 
     private String schemeType;

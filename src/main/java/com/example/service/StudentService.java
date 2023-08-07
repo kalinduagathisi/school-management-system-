@@ -20,7 +20,7 @@ public interface StudentService {
 
     void deleteById(int id);
 
-    StudentResponseDto updateStudent(int studentId, StudentRequestDto studentRequestDto);
+    StudentEntity updateStudent(int studentId, StudentRequestDto studentRequestDto);
 
     List<StudentResponseDto> getStudentsByBirthMonthAndYear(int birthMonth, int birthYear);
 

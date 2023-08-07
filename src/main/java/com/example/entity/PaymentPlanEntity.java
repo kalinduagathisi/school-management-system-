@@ -2,6 +2,7 @@ package com.example.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,9 +26,9 @@ public class PaymentPlanEntity {
     private String feeType;
     private double amount;
 
-    //    @JsonIgnore
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "schemeId")
-    @JsonIdentityReference(alwaysAsId = true)  // returns only the id of the required entity
+    @JsonIgnore
+//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "schemeId")
+//    @JsonIdentityReference(alwaysAsId = true)  // returns only the id of the required entity
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payment_scheme_id")
     private PaymentSchemeEntity paymentSchemeEntity;
